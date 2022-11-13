@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chat-service-deployment
+  template:
+    metadata:
+      name: chat-service-deployment
+      labels:
+        app: chat-service-deployment
+    spec:
+      containers:
+        - name: chat-service-deployment
+          image: baimon664/chat-service:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: DATABASE_URL
+              value: "mongodb+srv://meety:meety@chat.9o419rg.mongodb.net/%3retryWrites=true&w=majority"
+            - name: RABBITMQ_URL
+              value: "amqp://rabbitmq-service:5672"
+          resources:
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chat-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: chat-service-deployment
+  ports:
+    - port: 8080
+      targetPort: 8080

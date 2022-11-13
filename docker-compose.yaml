@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+  app:
+    image: baimon664/user-service-gateway:latest
+    networks:
+      - sa
+    ports:
+      - 4000:4000
+    environment:
+      DATABASE_URL: postgresql://postgres:123@dev-db:5432/nest?schema=public
+      ACTIVITY_SERVICE: activity:5000
+      HASH_SALT: 11
+      JWT_SECRET: pickle
+      JWT_EXPIRE: 7d
+      JWT_EXPIRE_MILLISECONDS: 604800000
+      TOKEN_NAME: MeetyToken
+    depends_on:
+      - dev-db
+      - activity
+  dev-db:
+    image: postgres:13
+    container_name: dev-db
+    ports:
+      - 5434:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: nest
+    networks:
+      - sa
+  activity:
+    image: baimon664/activity-service:1.1
+    container_name: activity
+    networks:
+      - sa
+    ports:
+      - 5000:5000
+networks:
+  sa:

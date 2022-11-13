@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-service-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: user-service-deployment
+  template:
+    metadata:
+      name: user-service-deployment
+      labels:
+        app: user-service-deployment
+    spec:
+      containers:
+        - name: user-service-deployment
+          image: baimon664/user-service-gateway:1.5
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: DATABASE_URL
+              value: "postgresql://postgres:123@postgres-service:5432/nest?schema=public"
+            - name: RMQ_URL
+              value: "amqp://rabbitmq-service:5672"
+            - name: ACTIVITY_SERVICE
+              value: "activity-service:5000"
+            - name: HASH_SALT
+              value: "11"
+            - name: JWT_SECRET
+              value: pickle
+            - name: JWT_EXPIRE
+              value: 7d
+            - name: JWT_EXPIRE_MILLISECONDS
+              value: "604800000"
+            - name: TOKEN_NAME
+              value: MeetyToken
+            - name: Cors_Origin
+              value: http://localhost:3000
+            - name: REDIS_ADAPTOR_URL
+              value: redis://redis-service:6379
+          resources:
+            limits:
+              memory: "2Gi"
+              cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-service-nodeport
+spec:
+  type: ClusterIP
+  selector:
+    app: user-service-deployment
+  ports:
+    - port: 4000
+      targetPort: 4000

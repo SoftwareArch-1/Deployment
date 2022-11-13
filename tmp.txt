@@ -1,0 +1,11 @@
+kubectl exec -it pod/ubuntu -- /bin/sh
+cd prisma
+rm -r migrations
+cd ..
+prisma generate
+prisma migrate dev
+
+
+kubectl exec -it postgres-deployment-6bcbb56445-44g7d -- psql -U postgres
+
+kubectl port-forward pod/activity-service-67f857d5dc-zw4x5 30002:5000
