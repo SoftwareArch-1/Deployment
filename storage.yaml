@@ -1,12 +1,10 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: postgres-storage
-provisioner: kubernetes.io/gce-pd
+  name: filestore-example
+provisioner: filestore.csi.storage.gke.io
 volumeBindingMode: Immediate
 allowVolumeExpansion: true
-reclaimPolicy: Delete
 parameters:
-  type: pd-standard
-  fstype: ext4
-  replication-type: none
+  tier: standard
+  network: default
