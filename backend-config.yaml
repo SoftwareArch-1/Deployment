@@ -1,7 +1,7 @@
 apiVersion: cloud.google.com/v1
-kind: FrontendConfig
+kind: BackendConfig
 metadata:
-  name: my-frontndconfig
+  name: my-backendconfig
 spec:
   sessionAffinity:
     affinityType: "CLIENT_IP"

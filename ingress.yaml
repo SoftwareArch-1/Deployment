@@ -10,7 +10,7 @@ metadata:
     # nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
     # nginx.ingress.kubernetes.io/session-cookie-samesite: "None"
     # nginx.ingress.kubernetes.io/session-cookie-secure: "false"
-    networking.gke.io/v1beta1.FrontendConfig: "my-frontndconfig"
+    # networking.gke.io/v1beta1.FrontendConfig: "my-frontndconfig"
 spec:
   rules:
     - http:
