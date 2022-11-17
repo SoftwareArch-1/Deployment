@@ -4,4 +4,5 @@ metadata:
   name: my-backendconfig
 spec:
   sessionAffinity:
-    affinityType: "CLIENT_IP"
+    affinityType: "GENERATED_COOKIE"
+    affinityCookieTtlSec: 2400
