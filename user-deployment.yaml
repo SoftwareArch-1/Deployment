@@ -49,6 +49,7 @@ metadata:
   name: user-service-nodeport
   annotations:
     cloud.google.com/backend-config: '{"default": "my-backendconfig"}'
+    cloud.google.com/neg: '{"ingress": true}'
 spec:
   type: ClusterIP
   selector:
