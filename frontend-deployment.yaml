@@ -15,8 +15,11 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: baimon664/frontend:1.1
+          image: baimon664/frontend:1.6
           imagePullPolicy: IfNotPresent
+          env:
+            - name: NEXT_PUBLIC_API_GATEWAY_URL
+              value: "http://35.198.211.253"
           resources:
             limits:
               memory: "1Gi"
@@ -27,9 +30,10 @@ kind: Service
 metadata:
   name: frontend-service
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
     - port: 3000
       targetPort: 3000
+      nodePort: 30002
   selector:
     app: frontend

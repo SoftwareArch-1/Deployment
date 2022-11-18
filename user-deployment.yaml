@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: user-service-deployment
-          image: baimon664/user-service-gateway:1.5
+          image: baimon664/user-service-gateway:1.8
           imagePullPolicy: IfNotPresent
           env:
             - name: DATABASE_URL
@@ -34,8 +34,6 @@ spec:
               value: "604800000"
             - name: TOKEN_NAME
               value: MeetyToken
-            - name: Cors_Origin
-              value: http://localhost:3000
             - name: REDIS_ADAPTOR_URL
               value: redis://redis-service:6379
           resources:
