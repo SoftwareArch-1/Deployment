@@ -10,6 +10,7 @@ metadata:
     nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
     # nginx.ingress.kubernetes.io/session-cookie-samesite: "None"
     # nginx.ingress.kubernetes.io/session-cookie-secure: "true"
+    nginx.ingress.kubernetes.io/proxy-cookie-path: $uri "/; HTTPOnly; Secure; SameSite=strict"
 spec:
   rules:
     - http:
