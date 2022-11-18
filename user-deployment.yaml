@@ -49,7 +49,7 @@ metadata:
   name: user-service-nodeport
   annotations:
     cloud.google.com/backend-config: '{"default": "my-backendconfig"}'
-    cloud.google.com/neg: '{"ingress":false}'
+    cloud.google.com/neg: '{"ingress":true}'
 spec:
   type: NodePort
   selector:
