@@ -15,11 +15,8 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: baimon664/frontend:1.8
+          image: arskiir/frontend-sa:latest
           imagePullPolicy: IfNotPresent
-          env:
-            - name: API_GATEWAY_URL
-              value: "http://35.198.211.253"
           resources:
             limits:
               memory: "1Gi"
