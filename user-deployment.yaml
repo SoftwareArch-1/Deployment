@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: user-service-deployment
-          image: baimon664/user-service-gateway:1.9
+          image: baimon664/user-service-gateway:1.8
           imagePullPolicy: IfNotPresent
           env:
             - name: DATABASE_URL
