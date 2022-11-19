@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: arskiir/frontend-sa:latest
+          image: baimon664/frontend:1.8
           imagePullPolicy: IfNotPresent
           resources:
             limits:
@@ -27,7 +27,7 @@ kind: Service
 metadata:
   name: frontend-service
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
     - port: 3000
       targetPort: 3000
