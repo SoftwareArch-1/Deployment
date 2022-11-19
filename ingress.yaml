@@ -18,6 +18,13 @@ spec:
             path: "/"
             backend:
               service:
+                name: frontend-service
+                port:
+                  number: 3000
+          - pathType: Prefix
+            path: "/backend"
+            backend:
+              service:
                 name: user-service-nodeport
                 port:
                   number: 4000
